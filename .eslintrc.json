@@ -43,14 +43,14 @@
     },
     "rules": {
         "prettier/prettier": [
-            "error",
+            "off",
             {},
             {
                 "usePrettierrc": true
             }
         ],
         "semi": [
-            2,
+            0,
             "always"
         ],
         "space-before-function-paren": [
@@ -63,6 +63,10 @@
         "camelcase": 0,
         "no-return-assign": 0,
         "react/react-in-jsx-scope": 0,
-        "react/display-name": 0
+        "react/display-name": 0,
+        "linebreak-style": [
+            "off",
+            "windows"
+        ]
     }
 }
