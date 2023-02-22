@@ -3,6 +3,7 @@ import './Login.scss';
 import { FaArrowRight } from 'react-icons/fa';
 import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -42,9 +43,11 @@ const Login = () => {
         {/* button component */}
         <Button label={'登录'} className="auth-button button" disabled={false} />
 
-        <span className="forgot-password">
-          忘记密码? <FaArrowRight className="arrow-right" />
-        </span>
+        <Link to={'/forgot-password'}>
+          <span className="forgot-password">
+            忘记密码? <FaArrowRight className="arrow-right" />
+          </span>
+        </Link>
       </form>
     </div>
   );
