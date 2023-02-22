@@ -1,4 +1,4 @@
-import { AuthTabs, ForgotPassword } from "./pages/auth/AuthIndex"
+import { AuthTabs, ForgotPassword, ResetPassword } from "./pages/auth/AuthIndex"
 import { useRoutes } from "react-router-dom"
 
 export const AppRouter = () => {
@@ -10,6 +10,10 @@ export const AppRouter = () => {
         {
             path: '/forgot-password',
             element: <ForgotPassword />
+        },
+        {
+            path: '/reset-password',
+            element: <ResetPassword />
         }
     ])
     return elements
