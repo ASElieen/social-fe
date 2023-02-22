@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Input.scss';
 
 const Input = (props) => {
-  const { name, type, value, className, labelText, placeholder, handleChange } = props;
+  const { name, type, value, className, labelText, placeholder, handleChange, id } = props;
   return (
     <>
       <div className="form-row">
@@ -13,6 +14,7 @@ const Input = (props) => {
         )}
 
         <input
+          id={id}
           type={type}
           name={name}
           value={value}
@@ -27,11 +29,12 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
   labelText: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
   placeholder: PropTypes.string,
   handleChange: PropTypes.func
 };

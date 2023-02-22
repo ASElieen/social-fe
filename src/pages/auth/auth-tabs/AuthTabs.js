@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AuthTabs.scss';
 import backgroundImage from '../../../assets/images/background.jpg'
+import Login from '../login/Login';
 
 const AuthTabs = () => {
     const [type, setType] = useState('login')
@@ -11,15 +12,17 @@ const AuthTabs = () => {
                 <div className="tabs">
                     <div className="tabs-auth">
                         <ul className="tab-group">
-                            <li className="tab active" onClick={() => setType('login')}>
+                            <li className={`tab ${type === 'login' ? 'active' : ''}`} onClick={() => setType('login')}>
                                 <button className="login">登录</button>
                             </li>
-                            <li className="tab" onClick={() => setType('signup')}>
+                            <li className={`tab ${type === 'signup' ? 'active' : ''}`} onClick={() => setType('signup')}>
                                 <button className="signup">注册</button>
                             </li>
                         </ul>
                         {
-                            type === 'login' && <div className="tab-item">login component</div>
+                            type === 'login' && <div className="tab-item">
+                                <Login />
+                            </div>
                         }
                         {
                             type === 'signup' && <div className="tab-item">register component</div>
