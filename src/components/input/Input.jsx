@@ -21,7 +21,7 @@ const Input = (props) => {
           onChange={handleChange}
           placeholder={placeholder}
           className={className ? `${className}` : 'form-input'}
-          autoComplete={false}
+          autoComplete={'false'}
         />
       </div>
     </>

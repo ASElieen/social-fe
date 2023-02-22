@@ -1,15 +1,11 @@
 import React from 'react';
-import './Login.scss';
-import { FaArrowRight } from 'react-icons/fa';
 import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
+import './Register.scss';
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="auth-inner">
-      <div className="alerts" role="alert">
-        Error message
-      </div>
       <form className="auth-form">
         <div className="form-input-container">
           {/* username */}
@@ -23,6 +19,17 @@ const Login = () => {
             handleChange={() => {}}
           />
 
+          {/* email field */}
+          <Input
+            id="email"
+            name="email"
+            type="text"
+            value="test@text.com"
+            labelText="邮箱"
+            placeholder="enter ur Email"
+            handleChange={() => {}}
+          />
+
           {/* password field */}
           <Input
             id="password"
@@ -33,21 +40,12 @@ const Login = () => {
             placeholder="enter ur password"
             handleChange={() => {}}
           />
-
-          <label className="checkmark-container" htmlFor="checkbox">
-            <Input id="checkbox" name="checkbox" type="checkbox" value={false} handleChange={() => {}} />
-            记住我
-          </label>
         </div>
         {/* button component */}
-        <Button label={'登录'} className="auth-button button" disabled={false} />
-
-        <span className="forgot-password">
-          忘记密码? <FaArrowRight className="arrow-right" />
-        </span>
+        <Button label={'注册'} className="auth-button button" disabled={false} />
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;

@@ -54,7 +54,7 @@
         margin: 0;
 
         .active button {
-          background: var(--white-3);
+          background: white;
           color: var(--gray-2);
         }
 
@@ -64,7 +64,7 @@
           display: block;
           text-decoration: none;
           padding: 15px;
-          background: var(--white-1);
+          background: var(--white-3);
           color: var(--gray-1);
           font-size: 20px;
           float: left;
