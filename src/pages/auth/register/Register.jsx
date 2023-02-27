@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
+import { Utils } from '../../../services/utils/utils.service';
+import { authService } from '../../../services/api/auth/auth.service';
 import './Register.scss';
 
 const Register = () => {
@@ -16,6 +18,17 @@ const Register = () => {
     setLoading(true);
     e.preventDefault();
     try {
+      const avatarColor = Utils.avatarColor();
+      const avatarImage = ''; // for now
+      const result = await authService.signUp({
+        username,
+        email,
+        password,
+        avatarColor,
+        avatarImage
+      });
+      console.log(result);
+
       setAlertType('alert-success');
       setHasError(false);
     } catch (error) {
@@ -42,6 +55,7 @@ const Register = () => {
             value={username}
             labelText="用户名"
             placeholder="请输入您的用户名"
+            style={{ border: `${hasError ? '1px solid #fa9b8a' : ''}` }}
             handleChange={(e) => {
               setUsername(e.target.value);
             }}
@@ -55,6 +69,7 @@ const Register = () => {
             value={email}
             labelText="邮箱"
             placeholder="请输入您的邮箱"
+            style={{ border: `${hasError ? '1px solid #fa9b8a' : ''}` }}
             handleChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -68,6 +83,7 @@ const Register = () => {
             value={password}
             labelText="密码"
             placeholder="请输入您的密码"
+            style={{ border: `${hasError ? '1px solid #fa9b8a' : ''}` }}
             handleChange={(e) => {
               setPassword(e.target.value);
             }}
