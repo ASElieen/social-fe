@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
 import { Utils } from '../../../services/utils/utils.service';
@@ -13,13 +13,14 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [hasError, setHasError] = useState(false);
+  const [user, setUser] = useState('');
 
   const registerUser = async (e) => {
     setLoading(true);
     e.preventDefault();
     try {
       const avatarColor = Utils.avatarColor();
-      const avatarImage = ''; // for now
+      const avatarImage = Utils.generateAvatarImage(username.charAt(0).toUpperCase(), avatarColor); // for now
       const result = await authService.signUp({
         username,
         email,
@@ -28,6 +29,8 @@ const Register = () => {
         avatarImage
       });
       console.log(result);
+
+      setUser(result.data.user);
 
       setAlertType('alert-success');
       setHasError(false);
@@ -38,6 +41,15 @@ const Register = () => {
       setErrorMessage(error?.response?.data.message);
     }
   };
+
+  useEffect(() => {
+    if (loading && !user) return;
+    if (user) {
+      console.log('navigate to new page');
+      setLoading(false);
+    }
+  }, [loading, user]);
+
   return (
     <div className="auth-inner">
       {hasError && errorMessage && (
@@ -79,7 +91,7 @@ const Register = () => {
           <Input
             id="password"
             name="password"
-            type="text"
+            type="password"
             value={password}
             labelText="密码"
             placeholder="请输入您的密码"
