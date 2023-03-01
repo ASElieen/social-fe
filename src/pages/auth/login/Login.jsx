@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Login.scss';
 import { FaArrowRight } from 'react-icons/fa';
-import Input from '../../../components/input/Input';
-import Button from '../../../components/button/Button';
-import { authService } from '../../../services/api/auth/auth.service';
+import Input from '@components/input/Input';
+import Button from '@components/button/Button';
+import { authService } from '@services/api/auth/auth.service';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
