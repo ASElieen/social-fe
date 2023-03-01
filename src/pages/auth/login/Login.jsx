@@ -75,6 +75,7 @@ const Login = () => {
             type="password"
             value={password}
             labelText="密码"
+            placeholder="请输入您的密码"
             handleChange={(e) => setPassword(e.target.value)}
           />
 
