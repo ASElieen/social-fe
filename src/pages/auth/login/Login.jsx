@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import Input from '@components/input/Input';
 import Button from '@components/button/Button';
 import { authService } from '@services/api/auth/auth.service';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -16,6 +16,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [hasError, setHasError] = useState(false);
+
+  const navigate = useNavigate();
 
   const loginUser = async (e) => {
     setLoading(true);
@@ -40,11 +42,8 @@ const Login = () => {
 
   useEffect(() => {
     if (loading && !user) return;
-    if (user) {
-      console.log('navigate to stream page from login page');
-      setLoading(false);
-    }
-  }, [loading, user]);
+    if (user) navigate('/app/social/streams');
+  }, [loading, user, navigate]);
 
   return (
     <div className="auth-inner">
