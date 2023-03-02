@@ -5,6 +5,7 @@ import Input from '@components/input/Input';
 import Button from '@components/button/Button';
 import { authService } from '@services/api/auth/auth.service';
 import { Link, useNavigate } from 'react-router-dom';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -19,6 +20,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const [setStoredUsername] = useLocalStorage('username', 'set');
+  const [setLoggedIn] = useLocalStorage('keepLoginIn', 'set');
+
   const loginUser = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -27,8 +31,11 @@ const Login = () => {
         username,
         password
       });
+
+      setLoggedIn(keepLogin);
+      setStoredUsername(username);
+
       setUser(result.data.user);
-      setKeepLogin(keepLogin);
 
       setAlertType('alert-success');
       setHasError(false);

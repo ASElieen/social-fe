@@ -4,6 +4,7 @@ import Button from '@components/button/Button';
 import { Utils } from '@services/utils/utils.service';
 import { authService } from '@services/api/auth/auth.service';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from '@/hooks/useLocalStorage';
 import './Register.scss';
 
 const Register = () => {
@@ -18,6 +19,9 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  const [setStoredUsername] = useLocalStorage('username', 'set');
+  const [setLoggedIn] = useLocalStorage('keepLoginIn', 'set');
+
   const registerUser = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -31,6 +35,9 @@ const Register = () => {
         avatarColor,
         avatarImage
       });
+
+      setLoggedIn(true);
+      setStoredUsername(username);
 
       setUser(result.data.user);
 
