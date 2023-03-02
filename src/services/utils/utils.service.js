@@ -1,6 +1,6 @@
 import { avatarColors } from './static.data'
 import { floor, random } from 'lodash'
-import { addUser } from '@/redux-toolkit/reducers/user/user-reducer'
+import { addUser, clearUser } from '@/redux-toolkit/reducers/user/user-reducer'
 
 export class Utils {
     // 随机选择颜色
@@ -34,5 +34,12 @@ export class Utils {
         pageReload(true)
         dispatch(addUser({ token: res.data.token, profile: res.data.user }))
         setUser(res.data.user)
+    }
+
+    static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }) {
+        dispatch(clearUser())
+        deleteStorageUsername()
+        deleteSessionPageReload()
+        setLoggedIn(false)
     }
 }
