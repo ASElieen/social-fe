@@ -1,5 +1,6 @@
 import { avatarColors } from './static.data'
 import { floor, random } from 'lodash'
+import { addUser } from '@/redux-toolkit/reducers/user/user-reducer'
 
 export class Utils {
     // 随机选择颜色
@@ -26,5 +27,12 @@ export class Utils {
         context.fillText(text, canvas.width / 2, canvas.height / 2)
 
         return canvas.toDataURL('image/png')
+    }
+
+
+    static dispatchUser(res, pageReload, dispatch, setUser) {
+        pageReload(true)
+        dispatch(addUser({ token: res.data.token, profile: res.data.user }))
+        setUser(res.data.user)
     }
 }
